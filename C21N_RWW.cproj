@@ -149,9 +149,13 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="my_init\nvm_userrow.c">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Device_Startup" />
+    <Folder Include="my_init" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Device_Startup\samc21n18a_flash.ld">
