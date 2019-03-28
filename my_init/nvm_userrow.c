@@ -34,9 +34,9 @@
 	(1 << 3) |																   \
 	NVMCTRL_FUSES_EEPROM_SIZE(7) |							        		   \
 	(1 << 7) |							        		                       \
-	FUSES_BODVDDUSERLEVEL(8) |							        		       \
+	FUSES_BODVDDUSERLEVEL(48) |  						        		       \
 	(0 << FUSES_BODVDD_DIS_Pos) |							        		   \
-	FUSES_BODVDD_ACTION(1) |							        		       \
+	FUSES_BODVDD_ACTION(2) |							        		       \
 	(0xA8 << 17) |							        		                   \
 	(0 << WDT_FUSES_ENABLE_Pos) |							        		   \
 	(0 << WDT_FUSES_ALWAYSON_Pos) |							        		   \

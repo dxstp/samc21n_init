@@ -23,18 +23,11 @@
  */
 // DOM-IGNORE-END
 
-#include <sam.h>
-#include "my_init/supc.h"
-#include "my_init/nvmctrl.h"
-#include "my_init/oscctrl.h"
-#include "my_init/gpio.h"
+#ifndef GPIO_H_
+#define GPIO_H_
 
-int main(void) {
-	SUPC_init();
-	NVMCTRL_init();
-	OSCCTRL_init();
-	GPIO_init();
+void GPIO_init(void);
 
-    while (1) {
-    }
-}
+
+
+#endif /* GPIO_H_ */

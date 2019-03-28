@@ -1,6 +1,6 @@
 // DOM-IGNORE-BEGIN
 /*
-    (c) 2018 Microchip Technology Inc. and its subsidiaries. 
+    (c) 2019 Microchip Technology Inc. and its subsidiaries. 
     
     Subject to your compliance with these terms, you may use Microchip software and any 
     derivatives exclusively with Microchip products. It is your responsibility to comply with third party 
@@ -24,17 +24,15 @@
 // DOM-IGNORE-END
 
 #include <sam.h>
-#include "my_init/supc.h"
-#include "my_init/nvmctrl.h"
-#include "my_init/oscctrl.h"
-#include "my_init/gpio.h"
+#include "gpio.h"
 
-int main(void) {
-	SUPC_init();
-	NVMCTRL_init();
-	OSCCTRL_init();
-	GPIO_init();
+enum gpio_port { GPIO_PORTA, GPIO_PORTB, GPIO_PORTC };
 
-    while (1) {
-    }
+/**
+ * init the GPIO module
+ */
+void GPIO_init(void) {
+	// turn on LED0
+ 	PORT->Group[GPIO_PORTA].DIRSET.reg = (1 << 15);
+	PORT->Group[GPIO_PORTA].OUTSET.reg = (1 << 15);
 }

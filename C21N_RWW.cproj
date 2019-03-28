@@ -149,7 +149,31 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="my_init\gpio.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="my_init\gpio.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="my_init\nvmctrl.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="my_init\nvmctrl.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="my_init\nvm_userrow.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="my_init\oscctrl.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="my_init\oscctrl.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="my_init\supc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="my_init\supc.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
