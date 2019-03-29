@@ -1,6 +1,6 @@
 // DOM-IGNORE-BEGIN
 /*
-    (c) 2018 Microchip Technology Inc. and its subsidiaries. 
+    (c) 2019 Microchip Technology Inc. and its subsidiaries. 
     
     Subject to your compliance with these terms, you may use Microchip software and any 
     derivatives exclusively with Microchip products. It is your responsibility to comply with third party 
@@ -24,37 +24,13 @@
 // DOM-IGNORE-END
 
 #include <sam.h>
-#include <stdio.h>
-#include "my_init/supc.h"
-#include "my_init/nvmctrl.h"
-#include "my_init/oscctrl.h"
-#include "my_init/nvic.h"
-#include "my_init/gclk.h"
-#include "my_init/port.h"
-#include "my_init/tc.h"
-#include "my_init/sercom.h"
-#include "utils/print.h"
-#include "utils/delay.h"
+#include "nvic.h"
 
-int main(void) {
-	SUPC_init();
-	NVMCTRL_init();
-	OSCCTRL_init();
-	NVIC_init();
-	GCLK_init();
-	PORT_init();
-	TC_init();
-	SERCOM4_init();
-	print_init();
+void NVIC_init(void) {	
 	
-	printf("Hello C21N World!\r\n");
+	// set SYSTEM priority
+	NVIC_SetPriority(SYSTEM_IRQn, 0);
 	
-    while (1) {	
-		PORT->Group[2].OUTTGL.reg = (1 << 5);
-		delay_ms(1000);
-    }
-}
-
-void SYSTEM_Handler() {
-	while(1);
+	// enable SYSTEM interrupt
+	NVIC_EnableIRQ(SYSTEM_IRQn);
 }

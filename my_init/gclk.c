@@ -23,11 +23,23 @@
  */
 // DOM-IGNORE-END
 
-#ifndef GPIO_H_
-#define GPIO_H_
+#include <sam.h>
+#include "gclk.h"
 
-void GPIO_init(void);
+/**
+ * init GCLK module
+ */
+void GCLK_init(void) {
+	// GCLK0: source is OSC48M, no divisor
+	// for main clock
+	GCLK->GENCTRL[0].reg =
+		  GCLK_GENCTRL_GENEN
+		| GCLK_GENCTRL_SRC_OSC48M;
+		
+	GCLK->GENCTRL[1].reg =
+		GCLK_GENCTRL_GENEN
+		| GCLK_GENCTRL_SRC_OSC48M
+		| GCLK_GENCTRL_OE
+		| GCLK_GENCTRL_DIV(1000);
 
-
-
-#endif /* GPIO_H_ */
+}

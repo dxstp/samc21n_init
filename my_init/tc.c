@@ -24,37 +24,28 @@
 // DOM-IGNORE-END
 
 #include <sam.h>
-#include <stdio.h>
-#include "my_init/supc.h"
-#include "my_init/nvmctrl.h"
-#include "my_init/oscctrl.h"
-#include "my_init/nvic.h"
-#include "my_init/gclk.h"
-#include "my_init/port.h"
-#include "my_init/tc.h"
-#include "my_init/sercom.h"
-#include "utils/print.h"
-#include "utils/delay.h"
+#include "tc.h"
 
-int main(void) {
-	SUPC_init();
-	NVMCTRL_init();
-	OSCCTRL_init();
-	NVIC_init();
-	GCLK_init();
-	PORT_init();
-	TC_init();
-	SERCOM4_init();
-	print_init();
-	
-	printf("Hello C21N World!\r\n");
-	
-    while (1) {	
-		PORT->Group[2].OUTTGL.reg = (1 << 5);
-		delay_ms(1000);
-    }
-}
+/** 
+ * init the TC module to generate PWM signal
+ */
+void TC_init(void) {
+	MCLK->APBCMASK.bit.TC4_ = 1;
 
-void SYSTEM_Handler() {
-	while(1);
+	GCLK->PCHCTRL[TC4_GCLK_ID].reg = GCLK_PCHCTRL_GEN_GCLK0 | GCLK_PCHCTRL_CHEN;
+	
+	// do a software reset of the module (write-synchronized)
+	TC4->COUNT16.CTRLA.reg = TC_CTRLA_SWRST;
+	while (TC4->COUNT16.SYNCBUSY.bit.SWRST);
+	
+	TC4->COUNT16.CTRLA.reg = 
+		  TC_CTRLA_MODE(TC_CTRLA_MODE_COUNT16_Val)
+		| TC_CTRLA_PRESCALER_DIV1;
+	TC4->COUNT16.WAVE.reg = TC_WAVE_WAVEGEN_NPWM_Val;
+	
+	TC4->COUNT16.CC[1].reg = 32767;
+	while (TC4->COUNT16.SYNCBUSY.bit.CC1);
+	
+	TC4->COUNT16.CTRLA.reg |= TC_CTRLA_ENABLE;
+	while (TC4->COUNT16.SYNCBUSY.bit.ENABLE);
 }

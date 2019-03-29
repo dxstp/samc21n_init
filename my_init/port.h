@@ -23,38 +23,11 @@
  */
 // DOM-IGNORE-END
 
-#include <sam.h>
-#include <stdio.h>
-#include "my_init/supc.h"
-#include "my_init/nvmctrl.h"
-#include "my_init/oscctrl.h"
-#include "my_init/nvic.h"
-#include "my_init/gclk.h"
-#include "my_init/port.h"
-#include "my_init/tc.h"
-#include "my_init/sercom.h"
-#include "utils/print.h"
-#include "utils/delay.h"
+#ifndef PORT_H_
+#define PORT_H_
 
-int main(void) {
-	SUPC_init();
-	NVMCTRL_init();
-	OSCCTRL_init();
-	NVIC_init();
-	GCLK_init();
-	PORT_init();
-	TC_init();
-	SERCOM4_init();
-	print_init();
-	
-	printf("Hello C21N World!\r\n");
-	
-    while (1) {	
-		PORT->Group[2].OUTTGL.reg = (1 << 5);
-		delay_ms(1000);
-    }
-}
+void PORT_init(void);
 
-void SYSTEM_Handler() {
-	while(1);
-}
+
+
+#endif /* PORT_H_ */

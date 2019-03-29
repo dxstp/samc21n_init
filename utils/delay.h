@@ -1,6 +1,6 @@
 // DOM-IGNORE-BEGIN
 /*
-    (c) 2019 Microchip Technology Inc. and its subsidiaries. 
+    (c) 2018 Microchip Technology Inc. and its subsidiaries. 
     
     Subject to your compliance with these terms, you may use Microchip software and any 
     derivatives exclusively with Microchip products. It is your responsibility to comply with third party 
@@ -23,16 +23,13 @@
  */
 // DOM-IGNORE-END
 
-#include <sam.h>
-#include "gpio.h"
+#ifndef DELAY_H_
+#define DELAY_H_
 
-enum gpio_port { GPIO_PORTA, GPIO_PORTB, GPIO_PORTC };
 
-/**
- * init the GPIO module
- */
-void GPIO_init(void) {
-	// turn on LED0
- 	PORT->Group[GPIO_PORTA].DIRSET.reg = (1 << 15);
-	PORT->Group[GPIO_PORTA].OUTSET.reg = (1 << 15);
-}
+#define CONF_CPU_FREQUENCY 48000000
+
+void delay_ms(const uint16_t ms);
+void delay_cycles(const uint32_t cycles);
+
+#endif /* DELAY_H_ */

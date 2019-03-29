@@ -23,38 +23,20 @@
  */
 // DOM-IGNORE-END
 
-#include <sam.h>
-#include <stdio.h>
-#include "my_init/supc.h"
-#include "my_init/nvmctrl.h"
-#include "my_init/oscctrl.h"
-#include "my_init/nvic.h"
-#include "my_init/gclk.h"
-#include "my_init/port.h"
-#include "my_init/tc.h"
-#include "my_init/sercom.h"
-#include "utils/print.h"
-#include "utils/delay.h"
 
-int main(void) {
-	SUPC_init();
-	NVMCTRL_init();
-	OSCCTRL_init();
-	NVIC_init();
-	GCLK_init();
-	PORT_init();
-	TC_init();
-	SERCOM4_init();
-	print_init();
-	
-	printf("Hello C21N World!\r\n");
-	
-    while (1) {	
-		PORT->Group[2].OUTTGL.reg = (1 << 5);
-		delay_ms(1000);
-    }
-}
+#ifndef SERCOM_H_
+#define SERCOM_H_
 
-void SYSTEM_Handler() {
-	while(1);
-}
+#define CONF_SERCOM_4_USART_BAUD_RATE 115200
+
+#define CONF_SERCOM_4_USART_BAUD_RATE_REGISTER_VAL \
+	(65536 - ((65536 * 16.0f * (CONF_SERCOM_4_USART_BAUD_RATE)) / 48000000))
+
+void SERCOM4_init(void);
+
+int32_t SERCOM4_read(char *const buf, const uint32_t length);
+int32_t SERCOM4_write(const char *const buf, const uint32_t length);
+int32_t SERCOM4_IsDataAvailable(void);
+
+
+#endif /* SERCOM_H_ */

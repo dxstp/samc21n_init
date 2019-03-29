@@ -109,7 +109,6 @@
       <Value>%24(PackRepoDir)\Atmel\SAMC21_DFP\1.2.176\samc21n\include</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
-  <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
   <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
   <armgcc.compiler.optimization.DebugLevel>Maximum (-g3)</armgcc.compiler.optimization.DebugLevel>
   <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
@@ -124,6 +123,7 @@
     </ListValues>
   </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
+  <armgcc.linker.memorysettings.ExternalRAM />
   <armgcc.linker.miscellaneous.LinkerFlags>-Tsamc21n18a_flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
   <armgcc.assembler.general.IncludePaths>
     <ListValues>
@@ -149,10 +149,16 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="my_init\gpio.c">
+    <Compile Include="my_init\gclk.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="my_init\gpio.h">
+    <Compile Include="my_init\gclk.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="my_init\port.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="my_init\port.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="my_init\nvmctrl.c">
@@ -170,16 +176,41 @@
     <Compile Include="my_init\oscctrl.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="my_init\sercom.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="my_init\sercom.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="my_init\supc.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="my_init\supc.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="my_init\tc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="my_init\tc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="utils\delay.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="utils\delay.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="utils\print.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="utils\print.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Device_Startup" />
     <Folder Include="my_init" />
+    <Folder Include="utils" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Device_Startup\samc21n18a_flash.ld">
