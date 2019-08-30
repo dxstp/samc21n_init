@@ -23,14 +23,10 @@
  */
 // DOM-IGNORE-END
 
-#include <sam.h>
-#include "nvic.h"
+#ifndef TSENS_H_
+#define TSENS_H_
 
-void NVIC_init(void) {	
-	NVIC_SetPriority(SYSTEM_IRQn, 0);
-	NVIC_EnableIRQ(SYSTEM_IRQn);
-	
-	NVIC_SetPriority(TSENS_IRQn, 3);
-	NVIC_EnableIRQ(TSENS_IRQn);	
+void TSENS_init(void);
+double getInternalTemperatureFiltered(void);
 
-}
+#endif /* TSENS_H_ */

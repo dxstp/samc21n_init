@@ -32,6 +32,7 @@
 #include "my_init/gclk.h"
 #include "my_init/port.h"
 #include "my_init/tc.h"
+#include "my_init/tsens.h"
 #include "my_init/sercom.h"
 #include "utils/print.h"
 #include "utils/delay.h"
@@ -44,6 +45,7 @@ int main(void) {
 	GCLK_init();
 	PORT_init();
 	TC_init();
+	TSENS_init();
 	SERCOM4_init();
 	print_init();
 	
@@ -53,9 +55,11 @@ int main(void) {
     while (1) {	
 		PORT->Group[2].OUTTGL.reg = (1 << 5);
 		delay_ms(1000);
+		printf("TSENS Temperature: %.2f\r\n", getInternalTemperatureFiltered());
     }
 }
 
 void SYSTEM_Handler() {
 	while(1);
 }
+

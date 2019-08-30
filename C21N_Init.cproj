@@ -13,7 +13,7 @@
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
     <AssemblyName>C21N_RWW</AssemblyName>
-    <Name>C21N_RWW</Name>
+    <Name>C21N_Init</Name>
     <RootNamespace>C21N_RWW</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
@@ -200,6 +200,12 @@
     <Compile Include="my_init\tc.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="my_init\tsens.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="my_init\tsens.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="utils\delay.c">
       <SubType>compile</SubType>
     </Compile>
@@ -216,7 +222,6 @@
   <ItemGroup>
     <Folder Include="Device_Startup" />
     <Folder Include="my_init" />
-    <Folder Include="rww_eeprom" />
     <Folder Include="utils" />
   </ItemGroup>
   <ItemGroup>
